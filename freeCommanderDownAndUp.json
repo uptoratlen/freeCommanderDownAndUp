@@ -2,12 +2,12 @@
     {
         "log_level": "INFO",
         "login_url": "http://freecommander.com/donors/login",
-        "browser_display": "yes",
+        "browser_display": "no",
         "downloadfolder": "c:\\download\\fc\\downloaded",
         "portabletarget": "c:\\download\\fc\\portable",
         "download": "portable32,setup32,portable64,setup64",
-        "execute": "",
+        "execute": "64",
         "extract": "32",
-        "close_browser": "no"
+        "close_browser": "yes"
     }
 ]
