@@ -1,4 +1,4 @@
-__version_info__ = ('0', '1', '0')
+__version_info__ = ('0', '1', '1')
 __version__ = '.'.join(__version_info__)
 
 import glob
@@ -237,19 +237,19 @@ try:
     downloads = user_data[0]['download'].split(',')
     for download_type in downloads:
         logging.info(f"Processing now {download_type}")
-
+        tr_var = 1
         if f"{download_type}" == "setup32":
             setup32_name = download_package('SETUP 32', '/html/body/div[1]/div[3]/div/div[1]/div[2]/div/table[2]/'
-                                                        'tbody/tr[3]/td[2]/p[2]/a')
+                                                        f'tbody/tr[{tr_var}]/td[2]/p[2]/a')
         elif f"{download_type}" == "setup64":
             setup64_name = download_package('SETUP 64', '/html/body/div[1]/div[3]/div/div[1]/div[2]/div/table[2]/'
-                                                        'tbody/tr[3]/td[3]/p[2]/a')
+                                                        f'tbody/tr[{tr_var}]/td[3]/p[2]/a')
         elif f"{download_type}" == "portable32":
             portable32_name = download_package('Portable 32', '/html/body/div[1]/div[3]/div/div[1]/div[2]/div/table[2]/'
-                                                              'tbody/tr[3]/td[2]/p[1]/a')
+                                                              f'tbody/tr[{tr_var}]/td[2]/p[1]/a')
         elif f"{download_type}" == "portable64":
             portable64_name = download_package('Portable 64', '/html/body/div[1]/div[3]/div/div[1]/div[2]/div/table[2]/'
-                                                              'tbody/tr[3]/td[3]/p[1]/a')
+                                                              f'tbody/tr[{tr_var}]/td[3]/p[1]/a')
         else:
             logging.error("A not supported download type in the json file -"
                           " allowed (portable32, portable64, setup32, setup64)")
