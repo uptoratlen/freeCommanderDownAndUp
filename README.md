@@ -19,6 +19,10 @@
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 
+```
+INFO: Currently I review if this thing realy works. (April 4th 2022)
+```
+
 ## Overview
 Since a few years I'm a lifetime user of freeCommander.
 A great tool BUT it lacks one feature. Some sort of "autoupdater".
