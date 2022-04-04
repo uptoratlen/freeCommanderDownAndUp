@@ -22,7 +22,7 @@
 ## Overview
 Since a few years I'm a lifetime user of freeCommander.
 A great tool BUT it lacks one feature. Some sort of "autoupdater".
-YOu got the info that a new version is online, but it is a bit stressful to update (login, download, extract and 
+You got the info that a new version is online, but it is a bit stressful to update (login, download, extract and 
 install). I even skip some versions just because I'm lazy....
 Recently I came across the forum post here:
 [Auto Update request](https://freecommander.com/forum/viewtopic.php?p=33610&hilit=download#p25617)
@@ -45,19 +45,19 @@ chromedriver was selected because the firefox profile was a bit (as said lazy...
 ## What it does
 For users with less experience, basically what it does:
 Python opens a chrome (headless == invisible) browser with a new profile (so your real one does not get altered) by the 
-webdriver. chromedriver is the link between chrome and selenium, and than it simulates browser actions like oyu 
-woudl do to download a new version. Login , select the download and install it optional.
+webdriver. chromedriver is the link between chrome and selenium, and than it simulates browser actions like you 
+would do, to download a new version. Login, select the download and install it optional or extract the portable version.
 As I expect that the webpage may be altered by some time, I guess later the automation will fail. 
 The program is to some extent configurable for this case. 
 
 First use (env)
 ```
-* The job ran successful with webpages at April 4th 2022.
+* The job ran successful with webpages on April 4th 2022.
 * Python 3.7.3 
 * Selenium was version 4.1.3
 * ChromeDriver 98.0.4758.80 (7f0488e8ba0d8e019187c6325a16c29d9b7f4989-refs/branch-heads/4758@{#972})
 * Chrome 99.0.4844.84 (Offizieller Build) (64-Bit)
-* hosting OS was Windows 11 (21H2)
+* Hosting OS was Windows 11 (21H2)
 ```
 
 ## Setup
@@ -81,13 +81,14 @@ The difference is that main, may contain newer und not so tested code.
 * Get chromedriver(.exe) as zip from 
 https://chromedriver.chromium.org/downloads, extract the chromedriver.exe
 and place it in the same folder as the freeCommanderDownAndUp.py
+Use the matching version to the installed chrome browser (check the chromedriver page for more infos)
   ```
   Hint: The "pip install chromedriver" will install the driver also, but may not work, as I expect the driver in the 
   same folder as the .py file. and Pip places it somewhere in the system. I do it that way to keep my versions.
   ```
 
 ## Edit freeCommanderDownAndUp_credential.json
-This is a not working sample ! - You need of course a valid login.
+This is a not working sample! - You need of course a valid login.
 
 ```
 [
@@ -109,7 +110,7 @@ to show "abc\\def"
 
 
 ## Edit freeCommanderDownAndUp.json
-This is a not working sample ! - You need to adjust to your needs.
+This is a sample! - You need to adjust to your needs.
 
 ```
 [
@@ -129,13 +130,13 @@ This is a not working sample ! - You need to adjust to your needs.
 | Name          |              value allowed              | Remark                                                                                                                                                                                                                                 | introduced  |
 |:---|:---------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------:|
 | log_level      |   [debug/info/warning/error/critical]   | The log level just in case needed - info is default, debug is fallback                                                                                                                                                                 |   v0.1.0    |
-| login_url |                 string                  | The login page of feecommander donor                                                                                                                                                                                                   |   v0.1.0    |
+| login_url |                 string                  | The login page of freecommander donor                                                                                                                                                                                                   |   v0.1.0    |
 | browser_display |                [Yes/No]                 | In case you want to see the magic                                                                                                                                                                                                      |   v0.1.0    |
 | downloadfolder |                 string                  | The location on the disk where all downloads will be copied to. Must exist prior.                                                                                                                                                      |   v0.1.0    |
 | portabletarget |                 string                  | The folder where the portable will be extracted to. must <br/>exist prior; Will be overwritten with new files from the zip.                                                                                                            |   v0.1.0    |
-| download | [portable32,setup32,portable64,setup64] | A comma seperated list of types to be downloaded.                                                                                                                                                                                      |   v0.1.0    |
+| download | [portable32,setup32,portable64,setup64] | A comma separated list of types to be downloaded.                                                                                                                                                                                      |   v0.1.0    |
 | execute |                 [32/64]                 | The type 32 or 64 that will be installed, leave blank to skip.                                                                                                                                                                         |      v0.1.0       |
-| extract |                  [32/64]                  | The type 32 or 64 that will be extrcated, leave blank to skip.                                                                                                                                                                         |   v0.1.0    |
+| extract |                  [32/64]                  | The type 32 or 64 that will be extracted, leave blank to skip.                                                                                                                                                                         |   v0.1.0    |
 | close_browser |                  [Yes/No]                | In case you want to keep the automated browser open, select "yes". |   v0.1.0    |
 
 
