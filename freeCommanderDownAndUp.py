@@ -17,6 +17,54 @@ from selenium.webdriver.chrome.options import Options as Options_Chrome
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 
+import requests
+import wget
+import zipfile
+
+def updateChromeDriver():
+    """As Chrome is updated automaticly the chromedriver
+    needs to be updated to a matching version
+
+    Args:
+        none
+
+    Returns:
+        none
+    """
+    try:
+        driverU = webdriver.Chrome()
+        browser_version = driverU.capabilities['browserVersion']
+        driver_version = driverU.capabilities['chrome']['chromedriverVersion'].split(' ')[0]
+
+    except Exception as err:
+        driver_version="10.0.0"
+        browser_version="20.0.0"
+    finally:
+        print("browser version", browser_version)
+        print("driver version", driver_version)
+    if browser_version.split(".")[0] != driver_version.split(".")[0]:
+        os.remove(r'chromedriver.exe')
+
+        # get the latest chrome driver version number
+        url = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
+        response = requests.get(url)
+        version_number = response.text
+
+        # build the donwload url
+        download_url = "https://chromedriver.storage.googleapis.com/" + version_number + "/chromedriver_win32.zip"
+        print("Chromedriver URL:", download_url)
+        # download the zip file using the url built above
+        latest_driver_zip = wget.download(download_url, 'chromedriver.zip')
+        print("extract Chromedriver.zip")
+        # extract the zip file
+        with zipfile.ZipFile(latest_driver_zip, 'r') as zip_ref:
+            zip_ref.extractall()  # you can specify the destination folder path here
+        # delete the zip file downloaded above
+        os.remove(latest_driver_zip)
+        print("Update done")
+
+    else:
+        print("rock and roll your are good to go")
 
 def json_config_check(_json_config, _key_list):
     """Checks if read json file contains all required keys
@@ -62,7 +110,7 @@ def download_package(type_dl, xpath_string):
         logging.info(f"Click now on the {type_dl} link, downloading {packagename}")
         driver.find_element(By.XPATH, xpath_string).click()
         sleep(1)
-        result = wait_for_download(f"{dl_file}/*.crdownload", timeout=dl_gracetime)
+        result = wait_for_download(f"{dl_file}.crdownload", timeout=dl_gracetime)
         if result is False:
             logging.error(f"Download still not done after {dl_gracetime}s - skip steps after download")
             return 1
@@ -152,6 +200,8 @@ logger.addHandler(sh)
 loglvl_allowed = ['debug', 'info', 'warning', 'error', 'critical']
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+updateChromeDriver()
 
 key_list_gsjson = ['log_level', 'login_url', 'browser_display', 'downloadfolder', 'portabletarget',
                    'download', 'execute', 'extract',

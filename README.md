@@ -35,7 +35,8 @@ and
 
 And by reading that it is not that easy, I though, wait.... and here we are
 
-Here is the link to the FreeCommander forum: (tbd) 
+Here is the link to the FreeCommander forum:
+[Posting](https://freecommander.com/forum/viewtopic.php?p=38648&sid=ec841cf298114637d7d8f799beb5de53#p38648)
 
 
 ### Limitations
@@ -90,6 +91,7 @@ Use the matching version to the installed chrome browser (check the chromedriver
   Hint: The "pip install chromedriver" will install the driver also, but may not work, as I expect the driver in the 
   same folder as the .py file. and Pip places it somewhere in the system. I do it that way to keep my versions.
   ```
+Once started it will update the chromedriver by itself right after each start 
 
 ## Edit freeCommanderDownAndUp_credential.json
 This is a not working sample! - You need of course a valid login.
