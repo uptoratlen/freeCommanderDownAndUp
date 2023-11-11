@@ -1,4 +1,4 @@
-__version_info__ = ('0', '1', '1')
+__version_info__ = ('0', '1', '2')
 __version__ = '.'.join(__version_info__)
 
 import glob
@@ -31,6 +31,8 @@ def updateChromeDriver():
     Returns:
         none
     """
+
+
     try:
         driverU = webdriver.Chrome()
         browser_version = driverU.capabilities['browserVersion']
@@ -46,12 +48,13 @@ def updateChromeDriver():
         os.remove(r'chromedriver.exe')
 
         # get the latest chrome driver version number
-        url = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
+        url = 'https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE'
         response = requests.get(url)
         version_number = response.text
 
         # build the donwload url
-        download_url = "https://chromedriver.storage.googleapis.com/" + version_number + "/chromedriver_win32.zip"
+        download_url = f"https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/{version_number}/win32/chromedriver-win32.zip"
+
         print("Chromedriver URL:", download_url)
         # download the zip file using the url built above
         latest_driver_zip = wget.download(download_url, 'chromedriver.zip')
